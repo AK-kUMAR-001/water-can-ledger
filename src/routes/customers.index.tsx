@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/select";
 import { RATES, addCustomer, pendingFor, rupees, useData } from "@/lib/store";
 
-export const Route = createFileRoute("/customers")({
+export const Route = createFileRoute("/customers/")({
   head: () => ({
     meta: [
       { title: "Customers — Water Can Accounts" },
