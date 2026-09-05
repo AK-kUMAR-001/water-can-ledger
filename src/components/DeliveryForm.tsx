@@ -40,14 +40,20 @@ export function DeliveryForm({
   const payment = Math.max(0, Math.floor(Number(payNow || 0)));
 
   function save() {
-    if (!customerId) return toast.error("Select a company first");
-    if (cans < 1) return toast.error("Enter number of cans");
+    if (!customerId) {
+      toast.error("Select a company first");
+      return;
+    }
+    if (cans < 1) {
+      toast.error("Enter number of cans");
+      return;
+    }
     addTxn({
       customerId,
       date,
       type: "delivery",
       cans,
-      cansReturned: returned || undefined,
+      ...(returned > 0 ? { cansReturned: returned } : {}),
       rate,
       amount,
     });

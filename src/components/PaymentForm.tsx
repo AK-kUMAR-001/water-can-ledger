@@ -23,8 +23,14 @@ export function PaymentForm({
   const amount = Math.max(0, Math.floor(Number(amountText || 0)));
 
   function save() {
-    if (!customerId) return toast.error("Select a company first");
-    if (amount <= 0) return toast.error("Enter a payment amount");
+    if (!customerId) {
+      toast.error("Select a company first");
+      return;
+    }
+    if (amount <= 0) {
+      toast.error("Enter a payment amount");
+      return;
+    }
     addTxn({ customerId, date, type: "payment", amount });
     toast.success(`Payment ${rupees(amount)} recorded`);
     setAmountText("");
